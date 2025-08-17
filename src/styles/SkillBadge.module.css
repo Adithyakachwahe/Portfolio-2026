@@ -1,0 +1,17 @@
+/* src/styles/SkillBadge.module.css */
+
+.badge {
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin: 0.25rem;
+  display: inline-block;
+  color: white;
+}
+
+.frontend { background-color: #3b82f6; }
+.backend  { background-color: #ef4444; }
+.ai       { background-color: #10b981; }
+.sap      { background-color: #e69e00; }
+.database { background-color: #8b5cf6; }
+.tools    { background-color: #6b7280; }
