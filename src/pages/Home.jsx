@@ -1,75 +1,50 @@
-import React from 'react';
+// src/pages/Home.jsx
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const UPDATE_INTERVAL_DAYS = 10;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Function to get the last updated date
-  const getLastUpdatedDate = () => {
-    const savedDate = localStorage.getItem('lastUpdated');
-    const now = new Date();
-
-    if (!savedDate) {
-      localStorage.setItem('lastUpdated', now.toISOString());
-      return now;
-    }
-
-    const lastUpdated = new Date(savedDate);
-    const timeDiff = now - lastUpdated;
-    const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-
-    if (daysDiff >= UPDATE_INTERVAL_DAYS) {
-      localStorage.setItem('lastUpdated', now.toISOString());
-      return now;
-    }
-
-    return lastUpdated;
-  };
-
-  const lastUpdated = getLastUpdatedDate();
-
-  // Format date as "Month Day, Year"
-  const formattedDate = lastUpdated.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-
-  console.log('Home rendered - Last updated:', formattedDate);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div
       style={{
-        padding: '3rem 2rem',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         textAlign: 'center',
+        padding: isMobile ? '1rem' : '2rem',
         maxWidth: '900px',
         margin: '0 auto',
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: '#1f2937',
-        minHeight: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
+        minHeight: 0, /* Important for flex child */
       }}
     >
       {/* Greeting */}
       <h1
         style={{
-          fontSize: 'clamp(2.5rem, 8vw, 3rem)',
+          fontSize: isMobile ? '1.75rem' : 'clamp(2rem, 6vw, 2.75rem)',
           fontWeight: '700',
           color: '#111827',
-          marginBottom: '1rem',
-          lineHeight: '1.1',
+          marginBottom: '0.75rem',
+          lineHeight: '1.2',
         }}
       >
         Hi, I'm{' '}
         <span
           style={{
-            color: '#4F46E5',
-            fontWeight: '800',
             background: 'linear-gradient(90deg, #4F46E5, #7C3AED)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
+            fontWeight: '800',
           }}
         >
           Adithya Kachwahe P
@@ -79,9 +54,9 @@ const Home = () => {
       {/* Role */}
       <p
         style={{
-          fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
+          fontSize: isMobile ? '0.95rem' : 'clamp(1rem, 3vw, 1.25rem)',
           color: '#4B5563',
-          marginBottom: '1.5rem',
+          marginBottom: '1.25rem',
           fontWeight: '500',
         }}
       >
@@ -89,88 +64,81 @@ const Home = () => {
       </p>
 
       {/* Description */}
-      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+      <div 
+        style={{ 
+          maxWidth: '650px', 
+          margin: '0 auto',
+          padding: isMobile ? '0' : '0 1rem',
+        }}
+      >
         <p
           style={{
-            fontSize: '1.1rem',
+            fontSize: isMobile ? '0.9rem' : '1rem',
             color: '#4B5563',
-            lineHeight: '1.7',
-            marginBottom: '1rem',
-            textAlign: 'left',
+            lineHeight: '1.6',
+            marginBottom: '0.75rem',
+            textAlign: 'center',
           }}
         >
-          Passionate about building scalable, end-to-end web applications using{' '}
+          Passionate about building scalable web applications using{' '}
           <strong style={{ color: '#4F46E5' }}>React</strong>,{' '}
-          <strong style={{ color: '#4F46E5' }}>Python</strong>, and modern cloud
-          technologies like{' '}
-          <strong style={{ color: '#4F46E5' }}>Docker</strong> &{' '}
+          <strong style={{ color: '#4F46E5' }}>Python</strong>, and cloud
+          technologies like <strong style={{ color: '#4F46E5' }}>Docker</strong> &{' '}
           <strong style={{ color: '#4F46E5' }}>AWS</strong>.
         </p>
         <p
           style={{
-            fontSize: '1.1rem',
+            fontSize: isMobile ? '0.9rem' : '1rem',
             color: '#4B5563',
-            lineHeight: '1.7',
-            textAlign: 'left',
+            lineHeight: '1.6',
+            textAlign: 'center',
           }}
         >
-          Currently working at <strong>Bosch, Bangalore</strong>, where I build
-          and deploy full stack solutions from responsive frontends to
-          containerized backends bridging software engineering with real-world
-          impact.
+          Currently at <strong>Bosch, Bangalore</strong>, building full-stack solutions
+          that bridge engineering with real-world impact.
         </p>
       </div>
 
       {/* CTA Buttons */}
       <div
         style={{
-          marginTop: '2.5rem',
+          marginTop: isMobile ? '1.5rem' : '2rem',
           display: 'flex',
-          gap: '1rem',
+          gap: '0.75rem',
           justifyContent: 'center',
           flexWrap: 'wrap',
         }}
       >
-        <Link to="/projects">
+        <Link to="/projects" style={{ textDecoration: 'none' }}>
           <button
             style={{
               backgroundColor: '#4F46E5',
               color: 'white',
-              padding: '0.875rem 1.75rem',
+              padding: isMobile ? '0.7rem 1.25rem' : '0.75rem 1.5rem',
               border: 'none',
               borderRadius: '0.5rem',
-              fontSize: '1.05rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               boxShadow: '0 4px 12px rgba(79, 70, 229, 0.25)',
             }}
-            onMouseOver={(e) => (e.target.style.transform = 'translateY(-2px)')}
-            onMouseOut={(e) => (e.target.style.transform = 'translateY(0)')}
           >
             View My Work
           </button>
         </Link>
-        <Link to="/contact">
+        <Link to="/contact" style={{ textDecoration: 'none' }}>
           <button
             style={{
               backgroundColor: 'transparent',
               color: '#4F46E5',
-              padding: '0.875rem 1.75rem',
+              padding: isMobile ? '0.7rem 1.25rem' : '0.75rem 1.5rem',
               border: '2px solid #4F46E5',
               borderRadius: '0.5rem',
-              fontSize: '1.05rem',
+              fontSize: isMobile ? '0.9rem' : '1rem',
               fontWeight: '600',
               cursor: 'pointer',
               transition: 'all 0.3s ease',
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = '#4F46E5';
-              e.target.style.color = 'white';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'transparent';
-              e.target.style.color = '#4F46E5';
             }}
           >
             Get In Touch
@@ -178,29 +146,27 @@ const Home = () => {
         </Link>
       </div>
 
-      {/* Last Updated Badge */}
+      {/* Status Badge */}
       <div
         style={{
-          marginTop: '3rem',
-          fontSize: '0.875rem',
+          marginTop: isMobile ? '1.5rem' : '2rem',
+          fontSize: isMobile ? '0.75rem' : '0.8rem',
           color: '#6B7280',
-          fontStyle: 'italic',
           display: 'flex',
-          justifyContent: 'center',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: '0.4rem',
         }}
       >
         <span
           style={{
-            display: 'inline-block',
             width: '8px',
             height: '8px',
             borderRadius: '50%',
             backgroundColor: '#10B981',
+            display: 'inline-block',
           }}
-        ></span>
-        Last updated on {formattedDate}
+        />
+        Available for opportunities
       </div>
     </div>
   );
