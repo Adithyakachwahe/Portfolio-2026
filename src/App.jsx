@@ -1,6 +1,6 @@
 // src/App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -12,15 +12,42 @@ import Education from './pages/Education';
 import Contact from './pages/Contact';
 import styles from './styles/App.module.css';
 
-function App() {
+// ScrollToTop Component - Must be inside Router
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Get the scrollable container
+    const scrollContainer = document.getElementById('scroll-container');
+    
+    if (scrollContainer) {
+      scrollContainer.scrollTo(0, 0);
+      scrollContainer.scrollTop = 0;
+    }
+    
+    // Fallbacks
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    
+  }, [pathname]);
+
+  return null;
+};
+
+// App Content Component - Contains all the routed content
+const AppContent = () => {
   return (
-    <Router>
-      <div className={styles.appContainer} style={{height:'97.5vh'}}>
+    <>
+      {/* ScrollToTop - Triggers on every route change */}
+      <ScrollToTop />
+      
+      <div className={styles.appContainer}>
         {/* Fixed Navbar */}
         <Navbar />
 
-        {/* Content Wrapper (includes spacer + main + footer) */}
-        <div className={styles.contentWrapper}>
+        {/* Content Wrapper - Add ID for scroll targeting */}
+        <div id="scroll-container" className={styles.contentWrapper}>
           {/* Spacer for fixed navbar */}
           <div className={styles.navbarSpacer} />
 
@@ -41,6 +68,14 @@ function App() {
           <Footer />
         </div>
       </div>
+    </>
+  );
+};
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

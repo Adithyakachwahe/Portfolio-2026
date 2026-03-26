@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 const About = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isTablet, setIsTablet] = useState(window.innerWidth <= 1024 && window.innerWidth > 768);
+
   const UPDATE_INTERVAL_DAYS = 21;
 
   useEffect(() => {
@@ -11,7 +12,6 @@ const About = () => {
       setIsMobile(window.innerWidth <= 768);
       setIsTablet(window.innerWidth <= 1024 && window.innerWidth > 768);
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -19,21 +19,17 @@ const About = () => {
   const getLastUpdatedDate = () => {
     const savedDate = localStorage.getItem('lastUpdated');
     const now = new Date();
-
     if (!savedDate) {
       localStorage.setItem('lastUpdated', now.toISOString());
       return now;
     }
-
     const lastUpdated = new Date(savedDate);
     const timeDiff = now - lastUpdated;
     const daysDiff = timeDiff / (1000 * 60 * 60 * 24);
-
     if (daysDiff >= UPDATE_INTERVAL_DAYS) {
       localStorage.setItem('lastUpdated', now.toISOString());
       return now;
     }
-
     return lastUpdated;
   };
 
@@ -48,26 +44,22 @@ const About = () => {
     {
       emoji: '🚀',
       title: 'AI & Full-Stack Development',
-      description:
-        'Built intelligent tools like the LLM Error Assistant and SolFast 2.0 using React, Flask, and PyTorch NLP. Leveraging Generative AI to deliver real-time, enterprise-ready solutions.',
+      description: 'Developed & deployed 4 AI-powered tools (SolFast 2.0, Document Assistant, Error & Monitoring Corrections Assistant, Maintenance Recommendation Engine) using ReactJS, Flask, PyTorch, and LLMs at Bosch, reducing manual effort by 40%.',
     },
     {
       emoji: '⚙️',
-      title: 'SAP ABAP Automation',
-      description:
-        'Automated 7+ critical SAP processes including ST22 Dump Resolution, DTP Optimization, and SLT Dashboard — improving efficiency and reducing manual workload across global teams.',
+      title: 'Docker & AWS Cloud Deployment',
+      description: 'Containerized AI/ML applications using Docker and Docker Compose. Deployed scalable workloads to AWS (ECR, ECS, EC2, S3, IAM) for consistent dev-to-production environments.',
     },
     {
-      emoji: '📊',
-      title: 'SAP BW System Support',
-      description:
-        'Provided end-to-end support for data models and process chains, resolved 200+ tickets within SLA, and maintained 99.5% system uptime for mission-critical operations.',
+      emoji: '📡',
+      title: 'API Development & Security',
+      description: 'Built 100+ RESTful Flask APIs enabling real-time ML inference with <200ms response time. Implemented JWT authentication and OAuth protocols, achieving 100% enterprise security compliance.',
     },
     {
-      emoji: '💡',
-      title: 'Personal Projects & Innovation',
-      description:
-        'Created a voice-controlled Jarvis AI Assistant, a full-stack Airline Reservation System, and responsive clones like YouTube UI and BestOnlineMeal.com.',
+      emoji: '💼',
+      title: 'Software Engineering Internship',
+      description: 'Built an Airline Reservation System and an HR Automation tool using Java and Spring Boot at TechnoServe C2TC — demonstrating full-stack enterprise application design.',
     },
   ];
 
@@ -165,18 +157,20 @@ const About = () => {
       {/* Header */}
       <h2 style={styles.header}>About Me</h2>
 
+      {/* Intro */}
       <p style={styles.intro}>
-        I'm a Computer Science Engineer passionate about{' '}
-        <strong style={{ color: '#4F46E5' }}>AI</strong>,{' '}
-        <strong style={{ color: '#4F46E5' }}>full-stack development</strong>, and{' '}
-        <strong style={{ color: '#4F46E5' }}>enterprise automation</strong>. I build intelligent
-        systems that solve real-world problems from AI-powered tools.
+        I'm Adithya Kachwahe P, a <strong style={{ color: '#4F46E5' }}>Full Stack Developer</strong> with 3.5+ years of experience specializing in{' '}
+        <strong style={{ color: '#4F46E5' }}>ReactJS</strong>,{' '}
+        <strong style={{ color: '#4F46E5' }}>Python</strong>,{' '}
+        <strong style={{ color: '#4F46E5' }}>Flask</strong>,{' '}
+        <strong style={{ color: '#4F46E5' }}>Docker</strong>, and{' '}
+        <strong style={{ color: '#4F46E5' }}>AWS</strong>. 
+        Currently at Bosch Bangalore, I build intelligent AI-powered tools and scalable applications that solve real-world problems and deliver measurable business impact.
       </p>
 
       {/* Journey Section */}
       <div style={{ marginTop: '2.5rem' }}>
         <h3 style={styles.journeyTitle}>My journey so far</h3>
-
         <ul style={styles.journeyList}>
           {journeyItems.map((item, index) => (
             <li
@@ -198,7 +192,6 @@ const About = () => {
               }}
             >
               <span style={styles.emoji}>{item.emoji}</span>
-
               <div>
                 <h4 style={styles.itemTitle}>{item.title}</h4>
                 <p style={styles.itemDescription}>{item.description}</p>
@@ -213,8 +206,7 @@ const About = () => {
         <p style={styles.closingText}>
           I believe in continuous learning. Right now, I'm diving deep into{' '}
           <strong style={{ color: '#4F46E5', fontWeight: '600' }}>Generative AI</strong>,{' '}
-          <strong style={{ color: '#4F46E5', fontWeight: '600' }}>LLMs</strong>, and building
-          scalable full-stack applications that push the boundaries of what's possible.
+          <strong style={{ color: '#4F46E5', fontWeight: '600' }}>LLMs</strong>, and building scalable full-stack applications that push the boundaries of what's possible.
         </p>
       </div>
     </div>

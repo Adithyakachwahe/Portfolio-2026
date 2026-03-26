@@ -2,56 +2,64 @@
 
 /* Main App Container - Exactly 100vh */
 .appContainer {
-  height: 100vh;
+  height: 97.5vh;
   width: 100%;
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent any overflow from this container */
+  overflow: hidden;
   position: relative;
 }
 
 /* Content Wrapper - Takes full height and handles scrolling */
 .contentWrapper {
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
-  overflow-y: auto; /* This is the scrollable container */
+  overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto; /* Instant scroll for route changes */
 }
 
 /* Spacer for fixed navbar */
 .navbarSpacer {
-  min-height: 72px; /* Desktop navbar height */
+  min-height: 72px;
   flex-shrink: 0;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
   .navbarSpacer {
-    min-height: 60px; /* Mobile navbar height */
+    min-height: 60px;
   }
 }
 
 /* Main Content - Flexible, takes remaining space */
 .main {
-  flex: 1 0 auto; /* Grow to fill space, don't shrink, auto basis */
+  flex: 1 0 auto;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
   .main {
     padding: 1.5rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .main {
-    padding: 1rem 1rem 1rem 0rem;
+    padding: 1rem;
   }
 }
