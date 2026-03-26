@@ -85,7 +85,7 @@ const Home = () => {
           fontWeight: '500',
         }}
       >
-        AI Full Stack Developer | ABAP Specialist | React & Python Developer
+        Full Stack Developer | React · Python · Flask · Docker · AWS
       </p>
 
       {/* Description */}
@@ -99,9 +99,12 @@ const Home = () => {
             textAlign: 'left',
           }}
         >
-          Passionate about building end-to-end web applications and exploring the limitless possibilities of{' '}
-          <strong style={{ color: '#4F46E5' }}>Generative AI</strong> &{' '}
-          <strong style={{ color: '#4F46E5' }}>Large Language Models (LLMs)</strong>.
+          Passionate about building scalable, end-to-end web applications using{' '}
+          <strong style={{ color: '#4F46E5' }}>React</strong>,{' '}
+          <strong style={{ color: '#4F46E5' }}>Python</strong>, and modern cloud
+          technologies like{' '}
+          <strong style={{ color: '#4F46E5' }}>Docker</strong> &{' '}
+          <strong style={{ color: '#4F46E5' }}>AWS</strong>.
         </p>
         <p
           style={{
@@ -111,7 +114,10 @@ const Home = () => {
             textAlign: 'left',
           }}
         >
-          Currently working at <strong>Bosch, Bangalore</strong>, where I design intelligent solutions that bridge the gap between software engineering and AI innovation.
+          Currently working at <strong>Bosch, Bangalore</strong>, where I build
+          and deploy full stack solutions from responsive frontends to
+          containerized backends bridging software engineering with real-world
+          impact.
         </p>
       </div>
 

@@ -24,8 +24,9 @@ const Skills = () => {
     { name: 'NumPy', category: 'AI/ML' },
     { name: 'Pandas', category: 'AI/ML' },
 
-    { name: 'SAP ABAP', category: 'SAP' },
-    { name: 'SAP BW', category: 'SAP' },
+    { name: 'AWS', category: 'Cloud' },
+    { name: 'Docker', category: 'Cloud' },
+    { name: 'EC2/S3/ECR/ECS', category: 'Cloud' },
 
     { name: 'MySQL', category: 'Database' },
     { name: 'SQL Plus', category: 'Database' },
@@ -42,7 +43,7 @@ const Skills = () => {
     Frontend: { bg: 'rgba(236, 201, 79, 0.15)', text: '#92400E', border: '#ECC94B' },
     Backend: { bg: 'rgba(107, 40, 217, 0.1)', text: '#6D28D9', border: '#C4B5FD' },
     'AI/ML': { bg: 'rgba(30, 64, 175, 0.1)', text: '#1E40AF', border: '#9CB3FF' },
-    SAP: { bg: 'rgba(185, 28, 28, 0.1)', text: '#B91C1C', border: '#FECDD3' },
+    Cloud: { bg: 'rgba(185, 28, 28, 0.1)', text: '#B91C1C', border: '#FECDD3' },
     Database: { bg: 'rgba(5, 150, 105, 0.1)', text: '#059669', border: '#A7F3D0' },
     Tools: { bg: 'rgba(55, 65, 81, 0.08)', text: '#374151', border: '#D1D5DB' },
   };
